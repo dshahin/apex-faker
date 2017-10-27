@@ -70,6 +70,18 @@ public abstract with sharing class Fabricator {
         return String.format(fullNameFormat, new List<String>{this.firstName(), this.lastName(), this.lastName()});
     }
 
+    public String phoneNumber() {
+        String phoneNumberFormat = this.getPhoneFormats()[this.getRandomNumber(this.getPhoneFormats().size())];
+
+        //TODO: move this into utility if it becomes useful elsewhere (which it probably will)
+        List<String> randomIntegers = new List<String>();
+        for(Integer i = 0; i < 15; i++) {
+            randomIntegers.add(String.valueOf(this.getRandomNumber(9)));
+        }
+
+        return String.format(phoneNumberFormat, randomIntegers);
+    }
+
     /***********************************
         Private Functions
     ************************************/
@@ -92,4 +104,5 @@ public abstract with sharing class Fabricator {
     ************************************/
     private abstract Locale getLocaleCode();
 
+    private abstract List<String> getPhoneFormats();
 }
